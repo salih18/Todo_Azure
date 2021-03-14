@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "cd client && yarn && yarn run build && cd ../ && node server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "cd client/todo-app && yarn && yarn run build && cd ../.. && node server",
+    "dev": "node server"
   },
   "keywords": [],
   "author": "salih18",
