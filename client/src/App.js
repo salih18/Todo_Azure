@@ -1,41 +1,47 @@
-import React from "react";
-import axios from 'axios';
-import "./index.css";
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bestShows: []
-    };
-  }
+//Components
+import Homepage from './pages/Homepage';
+import Navbar from './pages/layout/Navbar';
+import LatestNews from './pages/layout/LatestNews';
 
-  componentDidMount() {
-    console.log("componentDidMount success")
-    axios.get('/api/data')
-      .then(res => {
-        console.log("data recieved: ", res.data);
-        this.setState({ bestShows: res.data[0] });
-      })
-      .catch(alert);
-  }
+import Routes from './pages/routing/Routes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+//Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { loadUser } from './redux/actions/auth';
 
+import setAuthToken from './helpers/setAuthToken';
+import './App.css';
 
-  render() {
-    console.log("render bestShows: ", this.state.bestShows)
-    return (
-      <div>
-        azure-mern-demo
-        <ul>
-          {
-            Object.keys(this.state.bestShows).map((cur, idx) => (
-              <li>{cur} - {this.state.bestShows[cur]} </li>
-            ))
-          }
-        </ul>
-      </div>
-    );
-  }
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <>
+          <Navbar/>
+          <LatestNews/>
+          <ToastContainer newestOnTop autoClose={2000} />
+
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route component={Routes} />
+          </Switch>
+        </>
+      </Router>
+    </Provider>
+  );
 }
 
 export default App;

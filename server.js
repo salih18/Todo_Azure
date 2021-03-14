@@ -1,47 +1,40 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require("dotenv").config();
+const express = require("express");
+const connectDB = require("./config/db");
+const path = require("path");
 
-var app = express();
+const app = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// Connect Database
+connectDB();
 
-app.set('port', process.env.PORT || 5000);
-console.log("+++++++++++++++" + app.get('port'));
+// Init Middleware
+app.use(express.json({ extended: false }));
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// Define Routes
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/todos", require("./routes/api/todos"));
+app.use("/api/tags", require("./routes/api/tags"));
 
-app.use(express.static('./client/build'));
 
-app.use('/api/data', require('./routes/new-index.js'))
+app.use(express.static("client/build"));
 
-app.get("*", (req, res) => { //our GET route needs to point to the index.html in our build
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// // Serve static assets in production
+// if (process.env.NODE_ENV === "production") {
+//   // Set static folder
 
-    res.status(err.status || 500);
-    res.render('error');
-});
+//   app.use(express.static("client/build"));
 
-module.exports = app;
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
-app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
