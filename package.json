@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "cd client && yarn && yarn run build && cd ../ && node server",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "salih18",
