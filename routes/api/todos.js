@@ -14,7 +14,8 @@ router.get("/", auth, async (req, res) => {
   try {
     const todos = await Todo.find({
       user: req.user.id,
-    }).sort({ date: -1 });
+    });
+
     res.json(todos);
   } catch (err) {
     console.error(err.message);

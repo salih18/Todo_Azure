@@ -13,10 +13,10 @@ const Header = () => {
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
-            className="tv2z-logo"
-            alt="TV2Z"
-            src="https://www.tv2z.com/wp-content/uploads/2017/11/TV2Z_logo_web_dark.svg"
-            data-src="https://www.tv2z.com/wp-content/uploads/2017/11/TV2Z_logo_web_dark.svg"
+            className="brand-logo"
+            alt="brand logo"
+            src="https://logoipsum.com/logo/logo-25.svg"
+            data-src="https://logoipsum.com/logo/logo-25.svg"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

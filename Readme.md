@@ -27,10 +27,10 @@ password: 123456
 
 To get started you can simply clone the repo and install the dependencies in the root folder
 
-| Steps   |with [NPM](https://www.npmjs.com/) |
-| ------- | --------------------------------- | 
-| Install |`npm install`                      |
-| Run     |`npm run dev`                      |
+| Steps   | with [NPM](https://www.npmjs.com/) |
+| ------- | ---------------------------------- |
+| Install | `npm install`                      |
+| Run     | `npm run dev`                      |
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

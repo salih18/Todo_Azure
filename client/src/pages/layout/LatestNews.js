@@ -11,7 +11,7 @@ const LatestNews = () => {
           <Col className="col-sm-12 ">
             <span className="latest-news-badge">Latest News</span>
             <span className="latest-news-text">
-              TV2Z Todo App has been launched in Europe with new styles.
+              My Todo App has been launched in Europe with new styles.
             </span>
           </Col>
         </Row>
