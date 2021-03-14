@@ -4,11 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm install --prefix client && npm run build --prefix client",
-    "server": "nodemon server",
-    "client": "npm start --prefix client",
+    "start": "cd client && yarn && yarn run build && cd ../ && node server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "salih18",
