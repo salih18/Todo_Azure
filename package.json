@@ -1,16 +1,22 @@
 {
-  "name": "medium_azure_example",
+  "name": "new-owt",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
-  "license": "MIT",
   "scripts": {
-    "start": "cd client/mern_azure_example && yarn && yarn run build && cd ../.. && node server",
-    "dev": "node server"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "mongoose": "^5.3.6"
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "mongodb": "^3.4.1",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.4",
+    "react-share": "^3.0.1"
   }
 }
